@@ -30,6 +30,9 @@
                 <a href="#projects">Projects</a>
             </li>
             <li>
+                <a href="#certificates">Certificates</a>
+            </li>
+            <li>
                 <a href="#contact">Contact</a>
             </li>
         </ul>
@@ -65,7 +68,7 @@
             <a href="#projects" class="primary-btn">
                 View Projects
             </a>
-            <a href="https://github.com/HunPogi" 
+            <a href="https://github.com/cjamesarca" 
             target="_blank"
             class="secondary-btn">
 
@@ -289,7 +292,7 @@ const developer = {
     <div class="card">
 
         <h3>
-            SiguraDocs
+            SiguraDocs - Capstone Project
         </h3>
 
         <p>
@@ -314,26 +317,49 @@ const developer = {
     </div>
 
     <div class="card">
-        <h3>Machine Problem – 1st Year</h3>
-        <p>[Short one-line summary of this MP]</p>
+        <h3>Machine Problem – VeriVerifAI</h3>
+        <p>a simulated AI tool that can fact check social media posts automatically and can be used for students because of fake news.</p>
         <button class="view-project-btn" onclick="openProjectModal('mp1')">View Project</button>
     </div>
     <div class="card">
-        <h3>Machine Problem – 2nd Year</h3>
-        <p>[Short one-line summary of this MP]</p>
+        <h3>Machine Problem – Platntitos Mobile App</h3>
+        <p>A mobile app for citizens that loves plants, just like a forum or facebook but for plants.</p>
         <button class="view-project-btn" onclick="openProjectModal('mp2')">View Project</button>
     </div>
     <div class="card">
-        <h3>Machine Problem – 3rd Year</h3>
-        <p>[Short one-line summary of this MP]</p>
+        <h3>Machine Problem – Unli wings POS Kiosk</h3>
+        <p>a unli wings pos kiosk for a selected unli wings near school because of its busy</p>
         <button class="view-project-btn" onclick="openProjectModal('mp3')">View Project</button>
     </div>
     <div class="card">
-        <h3>Machine Problem – 4th Year</h3>
-        <p>[Short one-line summary of this MP]</p>
+        <h3>Machine Problem – Quill (study flashcards for students)</h3>
+        <p>We used Android studio making the app, and java and kotlin</p>
         <button class="view-project-btn" onclick="openProjectModal('mp4')">View Project</button>
     </div>
 
+</div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+<h2 class="section-title">Certificates</h2>
+<div class="cert-container">
+    <div class="cert-card">
+        <h3>[Certificate Title 1]</h3>
+        <p>[Issuing Organization] · [Month Year]</p>
+    </div>
+    <div class="cert-card">
+        <h3>[Certificate Title 2]</h3>
+        <p>[Issuing Organization] · [Month Year]</p>
+    </div>
+    <div class="cert-card">
+        <h3>[Certificate Title 3]</h3>
+        <p>[Issuing Organization] · [Month Year]</p>
+    </div>
+    <div class="cert-card">
+        <h3>[Certificate Title 4]</h3>
+        <p>[Issuing Organization] · [Month Year]</p>
+    </div>
 </div>
 </section>
 
@@ -390,8 +416,8 @@ const developer = {
 const projectData = {
     'siguradocs': {
         title: 'SiguraDocs',
-        features: 'A secure web-based and mobile document management system built for Barangay Butong, Cabuyao, Laguna, replacing manual paper-based processing of certificates such as barangay clearances, certificates of residency, certificates of indigency, and business permits. The system is organized into a User Management Module with multi-factor authentication, an Online Document Request Module for residents to submit and track requests in real time, a Document Processing Module giving staff and admins a central dashboard to approve, deny, and issue documents, a Document Verification Module where each issued document gets a unique QR code and reference number for authenticity checks, and a Security Module handling database encryption. Every document is assigned a cryptographic hash as a digital fingerprint, signed with the barangay\u2019s private key, and verified through its public key and QR code. All transactions are also recorded in a tamper-proof audit trail using hash-chaining, where each log entry is cryptographically linked to the one before it, making unauthorized tampering detectable.',
-        software: 'Flutter for the mobile app, React JS for the web frontend, Express JS for the backend, and MySQL as the relational database. Prisma ORM is used as an abstraction layer between the application and MySQL \u2014 instead of writing raw SQL, we use Prisma\u2019s structured methods for database operations, which improves code readability, maintainability, and security, while its parameterized queries help protect the system from SQL injection attacks.',
+        features: 'A secure web-based and mobile document management system built for Barangay Butong, Cabuyao, Laguna, replacing manual paper-based processing of certificates such as barangay clearances, certificates of residency, certificates of indigency, and business permits. The system is organized into a User Management Module with multi-factor authentication, an Online Document Request Module for residents to submit and track requests in real time, a Document Processing Module giving staff and admins a central dashboard to approve, deny, and issue documents, a Document Verification Module where each issued document gets a unique QR code and reference number for authenticity checks, and a Security Module handling database encryption. Every document is assigned a cryptographic hash as a digital fingerprint, signed with the barangay's private key, and verified through its public key and QR code. All transactions are also recorded in a tamper-proof audit trail using hash-chaining, where each log entry is cryptographically linked to the one before it, making unauthorized tampering detectable.',
+        software: 'Flutter for the mobile app, React JS for the web frontend, Express JS for the backend, and MySQL as the relational database. Prisma ORM is used as an abstraction layer between the application and MySQL — instead of writing raw SQL, we use Prisma\u2019s structured methods for database operations, which improves code readability, maintainability, and security, while its parameterized queries help protect the system from SQL injection attacks.',
         hardware: 'Standard development machines (laptops/PC desktops) for building and testing the system, and Android/iOS smartphones for testing the mobile app and QR code scanning through the device camera during document verification.',
         images: [
             'assets/projects/siguradocs-1.png',
@@ -402,44 +428,44 @@ const projectData = {
     },
     'gps-tracker': {
         title: 'Mobile GPS Tracker using Arduino',
-        features: '[Describe the key features of this project]',
-        software: '[List the software used]',
-        hardware: '[List the hardware used, e.g. Wemos, Arduino, GPS module]',
+        features: 'An IoT-based anti-theft tracking device that provides real-time location monitoring of a vehicle or asset. The system continuously reads coordinates from a GPS module, then transmits the location data over the internet through a Wemos (ESP8266) microcontroller, allowing the owner to check the current position remotely. The device is designed to help deter theft by giving the owner a way to track and recover a vehicle in real time instead of relying on physical security alone.',
+        software: '[List the software you used here — e.g. Arduino IDE with C/C++ firmware, and if applicable, the app/website used to view the live location such as Blynk, a custom web dashboard, or a mapping API.]',
+        hardware: 'Arduino microcontroller, Wemos (ESP8266) Wi-Fi module for internet connectivity, and a GPS module for real-time location tracking.',
         images: [
             'assets/projects/gps-tracker-1.jpg'
         ]
     },
     'mp1': {
-        title: 'Machine Problem – 1st Year',
-        features: '[Describe the features of this Machine Problem]',
-        software: '[List the software used]',
+        title: 'Machine Problem – VeriVerifAI',
+        features: 'A simulated AI-powered fact-checking tool designed to help students quickly verify the credibility of social media posts and news articles. Users can paste in a post, link, or claim, and the system runs it through a simulated AI classification process that flags potentially misleading or false content, highlights suspicious claims within the text, and returns a credibility indicator. The tool was built with students in mind, aiming to make it easier to spot fake news and misinformation before sharing or relying on it.',
+        software: '[List the software/tools you used — e.g. Python for the simulated AI logic, and the framework used for the interface such as Flask, Streamlit, or a web frontend.]',
         hardware: null,
         images: [
             'assets/projects/mp1-1.jpg'
         ]
     },
     'mp2': {
-        title: 'Machine Problem – 2nd Year',
-        features: '[Describe the features of this Machine Problem]',
-        software: '[List the software used]',
+        title: 'Machine Problem – Plantitos Mobile App',
+        features: 'A community-driven mobile app built for plant lovers ("Plantitos" and "Plantitas"), functioning like a social forum dedicated entirely to plants. Users can create posts to share their plant collection, ask for care advice, post updates on their plants\u2019 growth, and interact with other members through likes and comments — similar to how Facebook works, but centered around a plant-loving community.',
+        software: '[List the software/tools you used here — e.g. Android Studio, Java/Kotlin, or Flutter, plus whatever backend/database you used to store posts and user accounts.]',
         hardware: null,
         images: [
             'assets/projects/mp2-1.jpg'
         ]
     },
     'mp3': {
-        title: 'Machine Problem – 3rd Year',
-        features: '[Describe the features of this Machine Problem]',
-        software: '[List the software used]',
+        title: 'Machine Problem – Unli Wings POS Kiosk',
+        features: 'A self-service point-of-sale kiosk system designed for a local unli-wings restaurant near school that regularly experiences long queues during peak hours. The kiosk allows customers to browse the menu, select their unlimited wings flavors and add-ons, and place their order directly without waiting in line for a cashier. Orders are sent to the kitchen/staff for processing, helping reduce wait times and improve order accuracy during busy hours.',
+        software: '[List the software/tools you used here — e.g. the programming language and framework used to build the kiosk interface and the database used to store menu items and orders.]',
         hardware: null,
         images: [
             'assets/projects/mp3-1.jpg'
         ]
     },
     'mp4': {
-        title: 'Machine Problem – 4th Year',
-        features: '[Describe the features of this Machine Problem]',
-        software: '[List the software used]',
+        title: 'Machine Problem – Quill',
+        features: 'A study flashcard mobile app designed to help students review and retain information more effectively. Users can create their own flashcard sets organized by subject, flip through cards to test their recall, and use the app as a quick review tool ahead of exams or quizzes.',
+        software: 'Android Studio, using Java and Kotlin for app development.',
         hardware: null,
         images: [
             'assets/projects/mp4-1.jpg'

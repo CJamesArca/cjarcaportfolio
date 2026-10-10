@@ -675,6 +675,41 @@ section h2 {
     margin-bottom:0;
 }
 /* =========================
+        STUDENT ORGS (inside timeline)
+========================= */
+.timeline-orgs-label {
+    margin-top:18px;
+    margin-bottom:10px;
+    color:#60a5fa;
+    font-family:"Courier New", monospace;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+.timeline-orgs {
+    list-style:none;
+    max-width:700px;
+}
+.timeline-orgs li {
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:20px;
+    padding:10px 0;
+    border-bottom:1px solid rgba(148,163,184,0.12);
+    color:#cbd5e1;
+    font-size:16px;
+}
+.timeline-orgs li:last-child {
+    border-bottom:none;
+}
+.org-years {
+    color:#64748b;
+    font-family:"Courier New", monospace;
+    font-size:14px;
+    white-space:nowrap;
+}
+/* =========================
         CERTIFICATES
 ========================= */
 .cert-container {
@@ -706,6 +741,62 @@ section h2 {
     color:#94a3b8;
     font-size:14px;
     line-height:1.6;
+}
+/* =========================
+        SEMINARS ATTENDED
+========================= */
+.subsection-title {
+    max-width: var(--container-width);
+    margin:70px auto 25px;
+    font-size:28px;
+    color:#f8fafc;
+    letter-spacing:-0.5px;
+}
+.seminar-list {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+    max-width: var(--container-width);
+    margin:auto;
+}
+.seminar-card {
+    background:rgba(15,23,42,0.7);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(148,163,184,0.2);
+    padding:25px;
+    border-radius:16px;
+    transition:.3s;
+}
+.seminar-card:hover {
+    transform:translateY(-5px);
+    border-color:rgba(37,99,235,0.4);
+}
+.seminar-date {
+    display:block;
+    color:#64748b;
+    font-family:"Courier New", monospace;
+    font-size:13px;
+    margin-bottom:10px;
+}
+.seminar-card h4 {
+    color:#f8fafc;
+    font-size:17px;
+    line-height:1.4;
+    margin-bottom:12px;
+}
+.seminar-host {
+    color:#94a3b8;
+    font-size:14px;
+    line-height:1.6;
+}
+.seminar-host a {
+    color:#60a5fa;
+    text-decoration:none;
+    transition:.3s;
+}
+.seminar-host a:hover {
+    color:#93c5fd;
+    text-decoration:underline;
 }
 /* =========================
         FOOTER
@@ -753,6 +844,10 @@ footer {
     }
     .hero-buttons {
         flex-direction:column;
+    }
+    .timeline-orgs li {
+        flex-direction:column;
+        gap:4px;
     }
 
 }

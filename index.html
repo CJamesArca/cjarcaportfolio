@@ -435,8 +435,16 @@ const developer = {
         </div>
         <h3 id="modalProjectTitle"></h3>
         <div class="project-section">
+            <h4>Overview</h4>
+            <p id="modalOverview"></p>
+        </div>
+        <div class="project-section">
             <h4>Discussion of the Features</h4>
-            <p id="modalFeatures"></p>
+            <ul id="modalFeatures" class="project-list"></ul>
+        </div>
+        <div class="project-section">
+            <h4>How to Use</h4>
+            <ol id="modalHowTo" class="project-list"></ol>
         </div>
         <div class="project-section">
             <h4>Software Used</h4>
@@ -450,16 +458,36 @@ const developer = {
 </div>
 
 <script>
-// ===== FILL IN YOUR REAL CONTENT HERE =====
-// For each project: title, features text, software list, hardware list (optional),
-// and an array of image paths for the screenshots. Add as many images as you want
-// per project — the carousel arrows will cycle through all of them.
+// ===== PROJECT CONTENT =====
+// overview: what the project is and the problem it solves
+// features: bullet list for "Discussion of the Features"
+// howToUse: ordered steps for "How to Use"
+// software / hardware: text (hardware can be null to hide the section)
+// images: screenshots for the carousel
 const projectData = {
     'siguradocs': {
         title: 'SiguraDocs',
-        features: 'A secure web-based and mobile document management system built for Barangay Butong, Cabuyao, Laguna, replacing manual paper-based processing of certificates such as barangay clearances, certificates of residency, certificates of indigency, and business permits. The system is organized into a User Management Module with multi-factor authentication, an Online Document Request Module for residents to submit and track requests in real time, a Document Processing Module giving staff and admins a central dashboard to approve, deny, and issue documents, a Document Verification Module where each issued document gets a unique QR code and reference number for authenticity checks, and a Security Module handling database encryption. Every document is assigned a cryptographic hash as a digital fingerprint, signed with the barangay\u2019s private key, and verified through its public key and QR code. All transactions are also recorded in a tamper-proof audit trail using hash-chaining, where each log entry is cryptographically linked to the one before it, making unauthorized tampering detectable.',
-        software: 'Flutter for the mobile app, React JS for the web frontend, Express JS for the backend, and MySQL as the relational database. Prisma ORM is used as an abstraction layer between the application and MySQL — instead of writing raw SQL, we use Prisma\u2019s structured methods for database operations, which improves code readability, maintainability, and security, while its parameterized queries help protect the system from SQL injection attacks.',
-        hardware: 'Standard development machines (laptops/PC desktops) for building and testing the system, and Android/iOS smartphones for testing the mobile app and QR code scanning through the device camera during document verification.',
+        overview: "SiguraDocs digitizes how Barangay Butong, Cabuyao, Laguna issues certificates such as barangay clearances, certificates of residency, certificates of indigency, and business permits. It replaces slow, paper-based processing with an online request system, and it makes every issued document verifiable so a certificate cannot be quietly forged or altered.",
+        features: [
+            "User Management with multi-factor authentication and role-based access control for residents, staff, and admins.",
+            "Online Document Request: residents submit and track requests in real time from the website or the mobile app.",
+            "Document Processing: a central dashboard where staff and admins review, approve, deny, and issue documents.",
+            "Document Verification: every issued document carries a unique QR code and reference number for authenticity checks.",
+            "Cryptographic digital signatures: each document is hashed with SHA-256 and signed with the barangay\u2019s private key (ECDSA), then verified with the public key.",
+            "Tamper-proof audit trail: transactions are logged with hash-chaining, so each log entry is linked to the one before it and any tampering is detectable.",
+            "Security Module: database encryption protects the stored records."
+        ],
+        howToUse: [
+            "Resident: register an account and log in using multi-factor authentication.",
+            "Resident: choose the certificate you need, fill out the request form, and submit it from the website or the mobile app.",
+            "Resident: follow the request status in real time until it is approved or denied.",
+            "Staff or Admin: log in to the dashboard, review incoming requests, then approve, deny, or issue the document.",
+            "Resident: once issued, download the certificate, which carries a unique QR code and reference number.",
+            "Anyone checking a document: scan the QR code or enter the reference number to confirm the document is authentic and unaltered.",
+            "Admin: open the audit trail to review a tamper-evident history of every transaction."
+        ],
+        software: "Flutter for the mobile app, React JS for the web frontend, Express JS for the backend, and MySQL as the relational database. Prisma ORM is used as an abstraction layer between the application and MySQL \u2014 instead of writing raw SQL, we use Prisma\u2019s structured methods for database operations, which improves code readability, maintainability, and security, while its parameterized queries help protect the system from SQL injection attacks.",
+        hardware: "Standard development machines (laptops/PC desktops) for building and testing the system, and Android/iOS smartphones for testing the mobile app and QR code scanning through the device camera during document verification.",
         images: [
             'assets/projects/siguradocs-1.png',
             'assets/projects/siguradocs-2.png',
@@ -469,36 +497,92 @@ const projectData = {
     },
     'gps-tracker': {
         title: 'Mobile GPS Tracker using Arduino',
-        features: 'An IoT-based anti-theft tracking device that provides real-time location monitoring of a vehicle or asset. The system continuously reads coordinates from a GPS module, then transmits the location data over the internet through a Wemos (ESP8266) microcontroller, allowing the owner to check the current position remotely. The device is designed to help deter theft by giving the owner a way to track and recover a vehicle in real time instead of relying on physical security alone.',
-        software: 'Arduino IDE with C/C++ for the microcontroller firmware, and a simple web dashboard built with HTML, CSS, and JavaScript using the Google Maps API to display the live GPS location.',
-        hardware: 'Arduino microcontroller, Wemos (ESP8266) Wi-Fi module for internet connectivity, and a GPS module for real-time location tracking.',
+        overview: "Built as a Platform Technologies course project, this IoT anti-theft device lets an owner know where a vehicle or asset is and get alerted when it moves without permission, so it can be tracked and recovered instead of relying on physical security alone.",
+        features: [
+            "Real-time geolocation: a GPS module continuously reads the device\u2019s coordinates.",
+            "Movement detection: an accelerometer senses movement so the system can tell when the device is being moved.",
+            "Live tracking: a companion application displays live location updates.",
+            "Theft alerts: the companion app sends notifications when unauthorized movement is detected.",
+            "Movement history: tracking data is stored in a SQL database so past movements can be reviewed."
+        ],
+        howToUse: [
+            "Attach the tracker to the vehicle or asset and power it on.",
+            "Let the Wemos connect the device to the internet so it can send its GPS data.",
+            "Open the companion app to see the live location of the device.",
+            "If the device is moved without the owner\u2019s knowledge, the accelerometer detects it and the app sends an alert notification.",
+            "Use the live location in the app to track the device, and review the stored history to see where it has been."
+        ],
+        software: "Arduino IDE with C/C++ for the microcontroller firmware, a companion application for live location display and notifications, and a SQL database for storing tracking data and movement history.",
+        hardware: "Arduino microcontroller, Wemos (ESP8266) Wi-Fi module for internet connectivity, a GPS module for location tracking, an accelerometer sensor for movement detection, and a laptop/PC desktop for development and testing.",
         images: [
             'assets/projects/gps-tracker-1.jpg'
         ]
     },
     'mp1': {
         title: 'Machine Problem – VeriVerifAI',
-        features: 'A simulated AI-powered fact-checking tool designed to help students quickly verify the credibility of social media posts and news articles. Users can paste in a post, link, or claim, and the system runs it through a simulated AI classification process that flags potentially misleading or false content, highlights suspicious claims within the text, and returns a credibility indicator. The tool was built with students in mind, aiming to make it easier to spot fake news and misinformation before sharing or relying on it.',
-        software: 'Python for the simulated AI fact-checking logic, with Flask used to build the web interface where users submit posts or links for checking.',
-        hardware: 'Laptop/PC Desktop used for development and testing.',
+        overview: "VeriVerifAI is a simulated AI fact-checking tool built for students. Fake news spreads quickly on social media, so the tool gives students a fast way to check a post before they believe it or share it.",
+        features: [
+            "Post submission: users paste a social media post, link, or claim to be checked.",
+            "Simulated AI analysis: the post is run through a simulated AI classification process.",
+            "Flagged content: potentially misleading or false statements are highlighted within the text.",
+            "Credibility indicator: the result shows how trustworthy the post appears to be.",
+            "Student-friendly design: a simple interface made for quick checks before sharing."
+        ],
+        howToUse: [
+            "Open the VeriVerifAI web page.",
+            "Paste the social media post, link, or claim you want to check into the input box.",
+            "Click the check button to run the analysis.",
+            "Read the credibility indicator and the highlighted claims in the result.",
+            "Decide whether to trust or share the post based on the result."
+        ],
+        software: "Python for the simulated AI fact-checking logic, with Flask used to build the web interface where users submit posts or links for checking.",
+        hardware: "Laptop/PC Desktop used for development and testing.",
         images: [
             'assets/projects/mp-1.png'
         ]
     },
     'mp2': {
         title: 'Machine Problem – Plantitos Mobile App',
-        features: 'A community-driven mobile app built for plant lovers ("Plantitos" and "Plantitas"), functioning like a social forum dedicated entirely to plants. Users can create posts to share their plant collection, ask for care advice, post updates on their plants\u2019 growth, and interact with other members through likes and comments — similar to how Facebook works, but centered around a plant-loving community.',
-        software: 'Android Studio with Java for the mobile app, and Firebase for the backend and database to handle user posts, comments, and accounts.',
-        hardware: 'Laptop/PC Desktop used for development and testing, and an Android smartphone/emulator for testing the mobile app.',
+        overview: "Plantitos is a community app for plant lovers. It works like a social forum dedicated to plants, giving plant owners one place to share their collection, ask for care advice, and connect with other plant enthusiasts.",
+        features: [
+            "User accounts: members sign up and log in to join the community.",
+            "Posts: users share their plants with photos and captions, and post updates on their growth.",
+            "Care advice: members can ask questions and get tips from other plant lovers.",
+            "Interaction: likes and comments let members engage with each other\u2019s posts.",
+            "Community feed: a timeline of plant posts, similar to a social network but focused on plants."
+        ],
+        howToUse: [
+            "Open the app and create an account, or log in.",
+            "Browse the feed to see plant posts from other members.",
+            "Tap the post button to share your own plant with a photo and caption.",
+            "Like and comment on posts, or post a question to ask for plant care advice.",
+            "Return to your posts to read replies and share growth updates."
+        ],
+        software: "Android Studio with Java for the mobile app, and Firebase for the backend and database to handle user posts, comments, and accounts.",
+        hardware: "Laptop/PC Desktop used for development and testing, and an Android smartphone/emulator for testing the mobile app.",
         images: [
             'assets/projects/mp-2.png'
         ]
     },
     'mp3': {
         title: 'Machine Problem – Unli Wings POS Kiosk',
-        features: 'A self-service point-of-sale kiosk system designed for a local unli-wings restaurant near school that regularly experiences long queues during peak hours. The kiosk allows customers to browse the menu, select their unlimited wings flavors and add-ons, and place their order directly without waiting in line for a cashier. Orders are sent to the kitchen/staff for processing, helping reduce wait times and improve order accuracy during busy hours.',
-        software: 'Built as a web-based kiosk application using HTML, CSS, and JavaScript for the interface, with PHP and MySQL handling the backend and storing menu items and orders.',
-        hardware: 'Laptop/PC Desktop used for development and testing.',
+        overview: "This point-of-sale kiosk was built for a busy local unli-wings restaurant near school. Customers can place their own orders at the kiosk instead of waiting in a long line, which speeds up service during peak hours.",
+        features: [
+            "Self-service ordering: customers browse the menu and order without a cashier.",
+            "Menu selection: choose unlimited wings flavors and add-ons.",
+            "Order summary: customers review their order before confirming.",
+            "Kitchen/staff handoff: confirmed orders are sent to staff for preparation.",
+            "Shorter queues: faster transactions and fewer ordering mistakes during busy hours."
+        ],
+        howToUse: [
+            "At the kiosk, start a new order.",
+            "Browse the menu and pick your unlimited wings flavors and any add-ons.",
+            "Review the items in your order and make changes if needed.",
+            "Confirm the order to send it to the kitchen.",
+            "Wait for your order to be prepared and served."
+        ],
+        software: "Built as a web-based kiosk application using HTML, CSS, and JavaScript for the interface, with PHP and MySQL handling the backend and storing menu items and orders.",
+        hardware: "Laptop/PC Desktop used for development and testing.",
         images: [
             'assets/projects/mp-3.png',
             'assets/projects/mp-4.png',
@@ -507,9 +591,22 @@ const projectData = {
     },
     'mp4': {
         title: 'Machine Problem – Quill',
-        features: 'A study flashcard mobile app designed to help students review and retain information more effectively. Users can create their own flashcard sets organized by subject, flip through cards to test their recall, and use the app as a quick review tool ahead of exams or quizzes.',
-        software: 'Android Studio, using Java and Kotlin for app development.',
-        hardware: 'Laptop/PC Desktop used for development and testing, and an Android smartphone/emulator for testing the mobile app.',
+        overview: "Quill is a flashcard study app that helps students review and remember what they learn. Instead of rereading notes, students make their own flashcards and quiz themselves, which makes studying before exams or quizzes faster and more active.",
+        features: [
+            "Custom flashcard sets: students create sets organized by subject.",
+            "Flip-to-reveal cards: each card shows a question first, then the answer for self-testing.",
+            "Quick review: go through a set in a few minutes before a quiz or exam.",
+            "Organized study material: keep notes for different subjects in one app."
+        ],
+        howToUse: [
+            "Open the app and create a new flashcard set for a subject.",
+            "Add cards by typing a question or term on the front and the answer on the back.",
+            "Open a set when you are ready to study.",
+            "Read each card, try to recall the answer, then flip the card to check.",
+            "Repeat the set until you remember the material."
+        ],
+        software: "Android Studio, using Java and Kotlin for app development.",
+        hardware: "Laptop/PC Desktop used for development and testing, and an Android smartphone/emulator for testing the mobile app.",
         images: [
             'assets/projects/mp-6.png',
             'assets/projects/mp-7.png',
@@ -522,13 +619,25 @@ const projectData = {
 let currentImages = [];
 let currentIndex = 0;
 
+function fillList(elementId, items) {
+    const list = document.getElementById(elementId);
+    list.innerHTML = '';
+    items.forEach(function(text) {
+        const li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+    });
+}
+
 function openProjectModal(id) {
     const data = projectData[id];
     currentImages = data.images;
     currentIndex = 0;
 
     document.getElementById('modalProjectTitle').textContent = data.title;
-    document.getElementById('modalFeatures').textContent = data.features;
+    document.getElementById('modalOverview').textContent = data.overview;
+    fillList('modalFeatures', data.features);
+    fillList('modalHowTo', data.howToUse);
     document.getElementById('modalSoftware').textContent = data.software;
 
     const hardwareSection = document.getElementById('modalHardwareSection');
@@ -539,6 +648,7 @@ function openProjectModal(id) {
         hardwareSection.style.display = 'none';
     }
 
+    document.querySelector('.project-modal-content').scrollTop = 0;
     updateCarouselImage();
     document.getElementById('projectModal').classList.add('active');
 }
